@@ -1,0 +1,95 @@
+{
+  "generated_by": "bench/bench.mjs",
+  "samples": 11,
+  "repeat_per_sample": 200,
+  "scenes": 6,
+  "labels": 84,
+  "exact_overlap_intervals": 141,
+  "collisions": 140,
+  "subframe_60hz": {
+    "fps": 60,
+    "exact_intervals": 141,
+    "detected": 115,
+    "missed": 26,
+    "miss_rate": 0.1844,
+    "baseline_runs": 123
+  },
+  "lanes": [
+    {
+      "name": "crossing-rows",
+      "lanes": 2,
+      "clique": 2,
+      "optimal": true,
+      "collisions": 20,
+      "maxSimultaneousVisible": 16
+    },
+    {
+      "name": "subframe-conveyor",
+      "lanes": 2,
+      "clique": 2,
+      "optimal": true,
+      "collisions": 26,
+      "maxSimultaneousVisible": 12
+    },
+    {
+      "name": "swarm-occlusion",
+      "lanes": 3,
+      "clique": 3,
+      "optimal": true,
+      "collisions": 9,
+      "maxSimultaneousVisible": 18
+    },
+    {
+      "name": "priority-stack",
+      "lanes": 11,
+      "clique": 11,
+      "optimal": true,
+      "collisions": 85,
+      "maxSimultaneousVisible": 14
+    },
+    {
+      "name": "viewport-egress",
+      "lanes": 1,
+      "clique": 1,
+      "optimal": true,
+      "collisions": 0,
+      "maxSimultaneousVisible": 12
+    },
+    {
+      "name": "occluder-sweep",
+      "lanes": 1,
+      "clique": 1,
+      "optimal": true,
+      "collisions": 0,
+      "maxSimultaneousVisible": 12
+    }
+  ],
+  "all_lane_optimal": true,
+  "scale": {
+    "factors": [
+      0.000001,
+      0.001,
+      1,
+      1000,
+      1000000
+    ],
+    "max_normalized_interval_drift": 5.025875e-16,
+    "mismatches": 0
+  },
+  "perf_ms": {
+    "cold_start": 6.7098,
+    "solve_all_scenes": {
+      "min": 0.4252,
+      "median": 0.4277,
+      "p95": 0.7414,
+      "stddev": 0.0889
+    },
+    "baseline_scan_all_scenes_60hz": {
+      "min": 2.2613,
+      "median": 2.2826,
+      "p95": 2.6071,
+      "stddev": 0.0987
+    },
+    "speedup_vs_60hz_scan": 5.34
+  }
+}

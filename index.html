@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>tlabel-cert-lab — continuous-time label certificate</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #0b1020; color: #e2e8f0;
+    font: 13px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; }
+  #app { display: grid; grid-template-columns: 1fr 320px; height: 100%; }
+  #stage { min-width: 0; position: relative; }
+  canvas { display: block; width: 100%; height: 100%; }
+  #panel { border-left: 1px solid #1e293b; padding: 14px; overflow: auto; background: #0e1526; }
+  h1 { font-size: 14px; margin: 0 0 4px; color: #f8fafc; }
+  .muted { color: #94a3b8; }
+  .num { color: #fbbf24; }
+  .row { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+  button, select { background: #17233c; color: #e2e8f0; border: 1px solid #2b3d5f;
+    border-radius: 6px; padding: 5px 9px; font: inherit; cursor: pointer; }
+  button:hover { background: #223354; }
+  input[type=range] { width: 100%; accent-color: #38bdf8; }
+  table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  td { padding: 2px 0; }
+  td:last-child { text-align: right; color: #fbbf24; }
+  .chip { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; }
+</style>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"}}
+</script>
+</head>
+<body>
+<div id="app">
+  <div id="stage"><canvas id="c"></canvas></div>
+  <aside id="panel">
+    <h1>tlabel-cert-lab</h1>
+    <div class="muted">Exact continuous-time label visibility + lane certificate.</div>
+    <div class="row" id="sceneRow"></div>
+    <div class="row">
+      <button id="play">▶ play</button>
+      <button id="cert">download cert</button>
+    </div>
+    <input id="time" type="range" min="0" max="4" step="0.001" value="0">
+    <table>
+      <tr><td>t</td><td id="hudT">0.000 s</td></tr>
+      <tr><td>visible labels</td><td id="hudVis">0</td></tr>
+      <tr><td>live collisions</td><td id="hudCol">0</td></tr>
+      <tr><td>lanes (optimal)</td><td id="hudLane">0</td></tr>
+      <tr><td>exact overlaps (clip)</td><td id="hudOv">0</td></tr>
+      <tr><td>60 Hz misses</td><td id="hudMiss">-</td></tr>
+    </table>
+    <p class="muted" style="margin-top:12px">
+      <span class="chip" style="background:#4ade80"></span>visible
+      <span class="chip" style="background:#94a3b8;margin-left:8px"></span>occluded
+      <span class="chip" style="background:#334155;margin-left:8px"></span>outside
+    </p>
+    <p class="muted">The slider reads the same <code>solveScene()</code> output that
+      <code>bench/verify.mjs</code> asserts in Node. Nothing is recomputed in the
+      renderer.</p>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
